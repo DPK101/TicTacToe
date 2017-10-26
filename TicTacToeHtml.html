@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 1px solid blue;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+</style>
+</head>
+<body>
+
+<p>Simple Tic Tac Toe Game</p>
+
+<table id="myGrid">
+  <tr>
+    <td contenteditable="true">
+    <td contenteditable="true">
+    <td contenteditable="true">
+  </tr>
+  <tr>
+    <td contenteditable="true">
+    <td contenteditable="true">
+    <td contenteditable="true">
+  </tr>
+  <tr>
+    <td contenteditable="true">
+    <td contenteditable="true">
+    <td contenteditable="true">
+  </tr>
+</table>
+
+<br/><button onclick="ticTacToe()">Who wins?</button>
+
+<p id="demo"></p>
+<p id="row"></p>
+<p id="column"></p>
+<p id="rad"></p>
+<p id="lad"></p>
+<script>
+function letTheGameBegin(box){
+	var init, result='';
+    //document.getElementById("row").innerHTML = init;
+	for(var i=0; i<box.length; i++){ //Row-wise
+		init = box[i][0];
+		for (var j = 0; j < box.length; j++) {
+			if(box[i][j] !== init){
+				result = 'fail';
+				break;
+			}
+			else{
+				result='pass';
+			}
+		}
+       
+		if(init !== undefined && result === 'pass'){
+			//console.log("winner is --> "+init);
+            document.getElementById("row").innerHTML = "Winner is => "+init;
+			break;
+		}
+	}
+    
+    var result='';
+	for(var j=0; j<box.length; j++){ //Column-wise
+		init = box[0][j];
+		for(var i=0; i<box.length; i++){
+			if(box[i][j] !== init){
+				result='fail';
+				break;
+			}
+			else{
+				result='pass';
+			}
+		}
+		if(init !== undefined && result === 'pass'){
+			//console.log("Winner is | "+init);
+            document.getElementById("column").innerHTML = "Winner is | "+init;
+			break;
+		}
+	}
+	var result='';
+	init=box[0][0];
+	for(var i=0; i<box.length; i++){
+		if(box[i][i] !== init){
+			result='fail';
+			break;
+		}
+		else{
+			result='pass';
+		}
+	}
+	if(init !== undefined && result === 'pass'){
+		//console.log("Winner is \\ "+init);
+        document.getElementById("rad").innerHTML = "Winner is \\ "+init;
+    }
+
+	var result='';
+	init=box[0][box.length-1];
+	var j = 0;
+	for(var i=box.length-1; i>=0; i--){
+		if(box[j][i] !== init){
+			result='fail';
+			break;
+		}
+		else{
+			result='pass';
+		}
+		j +=1;
+	}
+	if(init !== undefined && result === 'pass'){
+		//console.log("Winner is / "+init);
+        document.getElementById("lad").innerHTML = "Winner is / "+init;
+	}
+}
+
+function ticTacToe(){
+	var box=[[],[],[]];
+	var table =  document.getElementById("myGrid");
+    for(var i=0;i<3;i++){
+    	for(var j=0;j<3;j++){
+    		box[i].push(Number(table.rows[i].cells.item(j).innerHTML));
+        }
+    }
+    //document.getElementById("demo").innerHTML = box[0][0];
+    letTheGameBegin(box);
+}
+
+</script>
+
+</body>
+</html>
