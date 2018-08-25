@@ -14,6 +14,7 @@ The program also handles if it's a draw between the players
 
 How to play?
 1. head on to https://en.wikipedia.org/wiki/Tic-tac-toe to know about the game
+2. Demo at https://dpk101.github.io/ 
 
 Improvements
 ------------
